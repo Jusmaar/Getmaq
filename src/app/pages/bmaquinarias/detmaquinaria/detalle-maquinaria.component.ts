@@ -34,7 +34,7 @@ export class DetalleMaquinariaComponent implements OnInit, OnDestroy {
   descriprank:any;
   misdatosdataconfig: any = {
         'activemodal': false,
-        'titulo': 'Mensaje de Easymaq',
+        'titulo': 'Mensaje de Getmaq',
         'descripcion': 'Debe ingresar el correo y la contraseña para poder ingresar'
   };
   constructor(
@@ -58,7 +58,7 @@ export class DetalleMaquinariaComponent implements OnInit, OnDestroy {
           .subscribe((res: Publication) => {
             console.log('aqui2');
             this.publication = res;
-            let title = '' + this.publication.brand.name + ' ' + this.publication.modelo + ' | Easymaq SAC';
+            let title = '' + this.publication.brand.name + ' ' + this.publication.modelo + ' | Getmaq SAC';
             this.imagenSeleccionada = this.publication.urlImages[0];
             this.title.setTitle(title);
             this.meta.updateTag({ name: 'description', content: this.publication.description ? this.publication.description : 'Sin descripción' });
@@ -68,7 +68,7 @@ export class DetalleMaquinariaComponent implements OnInit, OnDestroy {
             /* this.meta.updateTag({ property: 'og:url', content: 'http://www.tienda.niux.pe/' + this.product.id }); */
             this.meta.updateTag({ property: 'og:image', content: this.publication.urlImages[0] ? this.publication.urlImages[0] : 'https://www.niux.pe/assets/img/image1.jpg' });
             this.meta.updateTag({ property: 'og:description', content: this.publication.description ? this.publication.description : 'Sin descripción' });
-            this.meta.updateTag({ property: 'og:site_name', content: 'Easymaq' });
+            this.meta.updateTag({ property: 'og:site_name', content: 'Getmaq' });
             console.log(res);
             this.DevolverRanking();
           });

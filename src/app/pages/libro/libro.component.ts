@@ -57,7 +57,7 @@ export class LibroComponent implements OnInit {
 
   misdatosdataconfig: any = {
         'activemodal': false,
-        'titulo': 'Mensaje de Easymaq',
+        'titulo': 'Mensaje de Getmaq',
         'descripcion': 'Debe ingresar el correo y la contraseña para poder ingresar'
   };
 
