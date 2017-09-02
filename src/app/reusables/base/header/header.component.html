@@ -9,7 +9,7 @@
         <div class="eq-logo">
           <a [routerLink]="['/'+fcountry.name+'/home']">
             <!-- <img src="assets/icon/easymaq_logo.png" alt="Logo de easymaq - Peru"> -->
-            <h1 class="getmaq">GET<span>MAQ</span></h1>
+            <h1 class="getmaq">Get<span>maQ</span></h1>
           </a>
         </div>
       </div>
@@ -26,9 +26,7 @@
           <!-- icon lupa -->
           <i class="material-icons" (click)="btBuscar = !btBuscar; eqFondo=true">search</i>
         </div>
-        <h2 class="eq-link-publicar" [routerLink]="['/'+fcountry.name+'/publicar-corporativo']">
-          publicar
-        </h2>
+       
 
         <div *ngIf="!_loginService.usuarioEasymaq" (click)="btLogin = true" class="eq-login">
           ingresar o registrarse
@@ -123,12 +121,12 @@
             <div class="eq-menu-link">Inicio</div>
           </a>
         </li>
-        <li class="eq-menu-item barra-bottom">
+        <!-- <li class="eq-menu-item barra-bottom">
           <a [routerLink]="['/'+fcountry.name+'/publicar-corporativo']">
             <div class="eq-icon"><i class="material-icons">camera_alt</i></div>
             <div class="eq-menu-link">Publicar</div>
           </a>
-        </li>
+        </li> -->
         <li class="eq-menu-item">
           <a [routerLink]="['/'+fcountry.name+'/maquinarias']" [queryParams]="{type: 'venta'}">
             <div class="eq-icon"><i class="material-icons">shopping_cart</i></div>

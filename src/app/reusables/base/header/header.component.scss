@@ -1252,4 +1252,7 @@ nav.content-header.home{
     span{
         color: $accent-color;
     }
+    @media screen and (max-width:576px){
+        font-size: 25px;
+    }
 }
