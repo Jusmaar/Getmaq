@@ -1,6 +1,6 @@
 <app-header *ngIf="isBrowser"></app-header>
 
-<div class="eq-container-breadcrumb bread-box">
+<div class="eq-container-breadcrumb bread-box" *ngIf="isBrowser">
   <div class="eq-breadcrumb container-new">
     <div [routerLink]="['/home']" class="eq-breadcrumb-atras">
       <i class="material-icons">keyboard_arrow_left</i>
@@ -21,7 +21,7 @@
   </div>
 </div>
 
-<div class="eq-container-detalle" *ngIf="publication">
+<div class="eq-container-detalle" *ngIf="publication && isBrowser">
   <div class="container-new">
     <div class="container-detalle-slider">
       <div class="container-detalle-slider-normal big-detail-image">
@@ -172,22 +172,22 @@
   </div>
 </div>
 
-<div class="eq-container-detalle-mapa" *ngIf="publication" [class.active]="btnMapaAtras">
+<div class="eq-container-detalle-mapa" *ngIf="publication && isBrowser" [class.active]="btnMapaAtras">
   <div class="container-mapa-especial">
     <div class="content-detalle-mapa">
       <agm-map *ngIf="isBrowser" [latitude]="publication.location.lat" [longitude]="publication.location.lng" [zoom]="14">
         <agm-marker [latitude]="publication.location.lat" [longitude]="publication.location.lng"></agm-marker>
       </agm-map>
-      <div class="btn-mapa-atras" (click)="btnMapaAtras = false;">
+      <div *ngIf="isBrowser" class="btn-mapa-atras" (click)="btnMapaAtras = false;">
         <i class="icon-cancel-form"></i>
       </div>
     </div>
   </div>
 </div>
 
-<section>
+<section *ngIf="isBrowser">
   <app-ranking *ngIf="publication" [btnranking]="btRanking" (pasaBtnranking)="showBtranking($event)" (rankTotal)="recibir($event)" [publicationrank]="publication" [tituloEstrellas]="titlerank" [numEstrellas]="starsrank" [descripcionEstrellas]="descriprank"></app-ranking>
 </section>
 
 <app-footer *ngIf="isBrowser"></app-footer>
-<app-easymodal [dataconfig]="misdatosdataconfig"></app-easymodal>
+<app-easymodal *ngIf="isBrowser" [dataconfig]="misdatosdataconfig"></app-easymodal>

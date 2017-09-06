@@ -55,5 +55,24 @@ export class PublicationService {
       });
   }
 
+  addVista(id: string): Observable<any> {
+    let query: string = `${this.url}/vistas`;
+    let data = JSON.stringify({
+      publicationId: id
+    })
+    return this.http.post(query, data)
+      .map((res: Response) => {
+        const data = res.json();
+        return data;
+      }).catch((err: Response | any) => {
+        console.log('err : ', err);
+        let errmsg: string;
+        if (err instanceof Response) {
+          errmsg = err.json() && err.json().msg || 'Tenemos problemas en el servidor.\nIntentelo más tarde';
+        }
+        return Observable.throw(errmsg);
+      });
+  }
+
 }
 

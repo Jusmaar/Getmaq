@@ -100,7 +100,7 @@ export class CardMaquinaComponent implements OnInit {
   convertUbigeo = new UbigeoStatic;
   misdatosdataconfig: any = {
         'activemodal': false,
-        'titulo': 'Mensaje de Getmaq',
+        'titulo': 'Mensaje de Easymaq',
         'descripcion': 'Debe ingresar el correo y la contraseña para poder ingresar'
   };
   ngOnInit() {

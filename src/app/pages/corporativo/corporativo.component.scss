@@ -4,13 +4,12 @@
 }
 .form-corporativo{
     margin: auto;
-    max-width: 972px;
+    max-width: 650px;
+    width: 100%;
     @include fontChico;
     margin-top: 65px;
     margin-bottom: 70px;
-    @media screen and (max-width:576px){
-        padding: 0 10px;
-    }
+    padding: 0 30px;
     h2{
         font-size: 30px;
         color: $primary-color-dark;
@@ -21,7 +20,7 @@
         color: white;
         font-weight: bold;
         margin-top: 15px;
-        background-color: #FF5722;
+        background-color:$accent-color;
         border-radius: 6px;
         padding: 8px 0 8px 0;
         cursor: pointer;

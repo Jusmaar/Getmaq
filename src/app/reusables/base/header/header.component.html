@@ -8,8 +8,7 @@
         </div>
         <div class="eq-logo">
           <a [routerLink]="['/'+fcountry.name+'/home']">
-            <!-- <img src="assets/icon/easymaq_logo.png" alt="Logo de easymaq - Peru"> -->
-            <h1 class="getmaq">Get<span>maQ</span></h1>
+            <img src="assets/icon/easymaq_logo.png" alt="Logo de easymaq - Peru">
           </a>
         </div>
       </div>
@@ -26,7 +25,9 @@
           <!-- icon lupa -->
           <i class="material-icons" (click)="btBuscar = !btBuscar; eqFondo=true">search</i>
         </div>
-       
+        <h2 class="eq-link-publicar" [routerLink]="['/'+fcountry.name+'/publicar-corporativo']">
+          publicar
+        </h2>
 
         <div *ngIf="!_loginService.usuarioEasymaq" (click)="btLogin = true" class="eq-login">
           ingresar o registrarse
@@ -38,7 +39,7 @@
             <div class="eq-login-email">{{ _loginService.usuarioEasymaq.email }}</div>
           </div>
           <div *ngIf="_loginService.usuarioEasymaq.picture" class="eq-login-foto">
-            <img [src]="_loginService.usuarioEasymaq.picture" alt="Photo de usuario getmaq">
+            <img [src]="_loginService.usuarioEasymaq.picture" alt="Photo de usuario easymaq">
           </div>
           <div *ngIf="!_loginService.usuarioEasymaq.picture" class="eq-login-foto">
             <i class="material-icons">person</i>
@@ -91,7 +92,7 @@
     <div *ngIf="_loginService.usuarioEasymaq" class="eq-menu-header logout">
       <div class="eq-menu-logo">
         <div *ngIf="_loginService.usuarioEasymaq.picture" class="icon-menu-logo-user">
-          <img [src]="_loginService.usuarioEasymaq.picture" alt="Photo de usuario getmaq">
+          <img [src]="_loginService.usuarioEasymaq.picture" alt="Photo de usuario easymaq">
         </div>
         <div *ngIf="!_loginService.usuarioEasymaq.picture" class="icon-menu-logo-user">
           <i class="material-icons">person</i>
@@ -121,12 +122,12 @@
             <div class="eq-menu-link">Inicio</div>
           </a>
         </li>
-        <!-- <li class="eq-menu-item barra-bottom">
+        <li class="eq-menu-item barra-bottom">
           <a [routerLink]="['/'+fcountry.name+'/publicar-corporativo']">
             <div class="eq-icon"><i class="material-icons">camera_alt</i></div>
             <div class="eq-menu-link">Publicar</div>
           </a>
-        </li> -->
+        </li>
         <li class="eq-menu-item">
           <a [routerLink]="['/'+fcountry.name+'/maquinarias']" [queryParams]="{type: 'venta'}">
             <div class="eq-icon"><i class="material-icons">shopping_cart</i></div>

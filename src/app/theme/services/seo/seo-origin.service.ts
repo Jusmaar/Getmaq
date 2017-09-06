@@ -32,7 +32,7 @@ export class seoOriginService {
     }
 
     getMetas() {
-        this.title = `Paises donde encontrar tus maquinarias pesadas | Getmaq`;
+        this.title = `Paises donde encontrar tus maquinarias pesadas | Easymaq`;
         this.metas = [
             {
                 name: 'description',
@@ -45,10 +45,10 @@ export class seoOriginService {
                 property: 'og:type', content: 'website'
             },
             {
-                property: 'og:title', content: `Paises donde encontrar tus maquinarias pesadas | Getmaq`
+                property: 'og:title', content: `Paises donde encontrar tus maquinarias pesadas | Easymaq`
             },
             {
-                property: 'og:url', content: `http://Getmaq.com`
+                property: 'og:url', content: `http://easymaq.com`
             },
             {
                 property: 'og:image', content: 'https://lh3.googleusercontent.com/-6OhxaFoBDOs/WUgrqUjThNI/AAAAAAAAA1w/g7UgmhIQrloDiEmuPQPvoQyywQp5HWKYwCL0BGAYYCw/h630/2017-06-19.png'
@@ -57,16 +57,16 @@ export class seoOriginService {
                 property: 'og:description', content: `Aqui podras elegir el pais donde deseas vender, comprar o alquilar tus maquinarias pesadas.`
             },
             {
-                property: 'og:site_name', content: 'Getmaq'
+                property: 'og:site_name', content: 'Easymaq'
             },
             {
                 name: 'twitter:card', content: 'summary'
             },
             {
-                name: 'twitter:site', content: '@get_maq'
+                name: 'twitter:site', content: '@easy_maq'
             },
             {
-                name: 'twitter:title', content: `Paises donde encontrar tus maquinarias pesadas | Getmaq`
+                name: 'twitter:title', content: `Paises donde encontrar tus maquinarias pesadas | Easymaq`
             },
             {
                 name: 'twitter:image', content: 'https://lh3.googleusercontent.com/-6OhxaFoBDOs/WUgrqUjThNI/AAAAAAAAA1w/g7UgmhIQrloDiEmuPQPvoQyywQp5HWKYwCL0BGAYYCw/h630/2017-06-19.png'

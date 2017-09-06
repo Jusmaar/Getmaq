@@ -16,7 +16,7 @@ export class CorporativoComponent implements OnInit {
   inf:boolean=true;
    misdatosdataconfig: any = {
         'activemodal': false,
-        'titulo': 'Mensaje de Getmaq',
+        'titulo': 'Mensaje de Easymaq',
         'descripcion': 'En unos momentos le estaremos informando a su correo'
 
   };
@@ -48,10 +48,5 @@ export class CorporativoComponent implements OnInit {
         subForm.unsubscribe();
       });
     }
-    // Envia email de confirmacion al usuario que publico
-    /* this._utilsService.enviocorreo(nombre, email)
-      .subscribe(success => {
-        console.log(success);
-      }); */
   }
 }

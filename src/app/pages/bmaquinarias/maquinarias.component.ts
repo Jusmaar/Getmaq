@@ -497,15 +497,19 @@ export class Maquinarias implements OnInit, OnDestroy {
   resFilter() {
     this.menu_filter = !this.menu_filter;
   }
+
   addFavorito(idpubli) {
-    let obj = {
-      usuarioId: JSON.parse(localStorage.getItem('token')).id,
-      publicationId: idpubli
+    if (this.isBrowser) {
+      let obj = {
+        usuarioId: JSON.parse(localStorage.getItem('token')).id,
+        publicationId: idpubli
+      }
+      let fav = this._favouriteService.AddFavourite(obj)
+        .subscribe(res => {
+          console.log('respuesta', res);
+        })
     }
-    let fav = this._favouriteService.AddFavourite(obj)
-      .subscribe(res => {
-        console.log('respuesta', res);
-      })
+
   }
 
 }

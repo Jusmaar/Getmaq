@@ -12,7 +12,7 @@ export class FooterComponent implements OnInit {
 
   misdatosdataconfigfot: any = {
     'activemodal': false,
-    'titulo': 'Mensaje de getmaq',
+    'titulo': 'Mensaje de Easymaq',
     'descripcion': 'Debe ingresar el correo y la contraseña para poder ingresar'
   };
 

@@ -23,19 +23,19 @@ export class DetalleMaquinariaComponent implements OnInit, OnDestroy {
   isBrowser: boolean = isPlatformBrowser(this.platform_id);
   imagenSeleccionada: string = '';
   publication: Publication;
-  btnMapaAtras:boolean = false;
+  btnMapaAtras: boolean = false;
   subRouter: Subscription;
   subService: Subscription;
 
-  btRanking:boolean=false;
+  btRanking: boolean = false;
 
-  titlerank:any;
-  starsrank:any;
-  descriprank:any;
+  titlerank: any;
+  starsrank: any;
+  descriprank: any;
   misdatosdataconfig: any = {
-        'activemodal': false,
-        'titulo': 'Mensaje de Getmaq',
-        'descripcion': 'Debe ingresar el correo y la contraseña para poder ingresar'
+    'activemodal': false,
+    'titulo': 'Mensaje de Easymaq',
+    'descripcion': 'Debe ingresar el correo y la contraseña para poder ingresar'
   };
   constructor(
     @Inject(PLATFORM_ID) private platform_id,
@@ -44,7 +44,7 @@ export class DetalleMaquinariaComponent implements OnInit, OnDestroy {
     private service: PublicationService,
     private meta: Meta,
     private title: Title,
-    private _rankingService:RankingService
+    private _rankingService: RankingService
   ) { }
 
   ngOnInit(): void {
@@ -58,7 +58,7 @@ export class DetalleMaquinariaComponent implements OnInit, OnDestroy {
           .subscribe((res: Publication) => {
             console.log('aqui2');
             this.publication = res;
-            let title = '' + this.publication.brand.name + ' ' + this.publication.modelo + ' | Getmaq SAC';
+            let title = '' + this.publication.brand.name + ' ' + this.publication.modelo + ' | Easymaq SAC';
             this.imagenSeleccionada = this.publication.urlImages[0];
             this.title.setTitle(title);
             this.meta.updateTag({ name: 'description', content: this.publication.description ? this.publication.description : 'Sin descripción' });
@@ -68,9 +68,21 @@ export class DetalleMaquinariaComponent implements OnInit, OnDestroy {
             /* this.meta.updateTag({ property: 'og:url', content: 'http://www.tienda.niux.pe/' + this.product.id }); */
             this.meta.updateTag({ property: 'og:image', content: this.publication.urlImages[0] ? this.publication.urlImages[0] : 'https://www.niux.pe/assets/img/image1.jpg' });
             this.meta.updateTag({ property: 'og:description', content: this.publication.description ? this.publication.description : 'Sin descripción' });
-            this.meta.updateTag({ property: 'og:site_name', content: 'Getmaq' });
+            this.meta.updateTag({ property: 'og:site_name', content: 'Easymaq' });
             console.log(res);
-            this.DevolverRanking();
+
+            /* ADDED VISTAS */
+            if (this.isBrowser) {
+              this.DevolverRanking();
+              let subVista: Subscription = this.service.addVista(this.publication.id)
+                .subscribe((res: any) => {
+                  console.log('vista added');
+                  subVista.unsubscribe();
+                }, (err: any) => {
+                  console.log('err vista add', err);
+                  subVista.unsubscribe();
+                })
+            }
           });
       });
   }
@@ -80,43 +92,49 @@ export class DetalleMaquinariaComponent implements OnInit, OnDestroy {
     this.subService.unsubscribe();
   }
 
-  confirm(text:string){
-    this.misdatosdataconfig.activemodal=true;
-    this.misdatosdataconfig.descripcion=text;
+  confirm(text: string) {
+    this.misdatosdataconfig.activemodal = true;
+    this.misdatosdataconfig.descripcion = text;
   }
 
   init(): void {
     this.publication = null;
   }
 
-  openRanking(){
-    if(localStorage.getItem('token')){
-      this.btRanking = !this.btRanking;
-    }else{
-      this.confirm('Inicie sesion para poder asignar una calificacion')
+  openRanking() {
+    if (this.isBrowser) {
+      if (localStorage.getItem('token')) {
+        this.btRanking = !this.btRanking;
+      } else {
+        this.confirm('Inicie sesion para poder asignar una calificacion')
+      }
     }
   }
 
-  showBtranking(event){
+  showBtranking(event) {
     this.btRanking = event.nameBtnranking;
   }
 
-  recibir(event: any){
+  recibir(event: any) {
     console.log('ranktotal: ', event);
     this.publication.rkStarTotal = event;
   }
 
-  DevolverRanking(){
-    let obj = {
-      usuarioId : JSON.parse(localStorage.getItem('token')).id,
-      publicationId:this.publication.id
+  DevolverRanking() {
+    if (this.isBrowser) {
+      if (localStorage.getItem('token')) {
+        let obj = {
+          usuarioId: JSON.parse(localStorage.getItem('token')).id,
+          publicationId: this.publication.id
+        }
+        let dev = this._rankingService.GetNumStars(obj)
+          .subscribe(res => {
+            this.titlerank = res.title;
+            this.starsrank = res.rankStar;
+            this.descriprank = res.description;
+            console.log(this.titlerank)
+          })
+      }
     }
-    let dev = this._rankingService.GetNumStars(obj)
-            .subscribe(res=>{
-              this.titlerank = res.title;
-              this.starsrank = res.rankStar;
-              this.descriprank = res.description;
-              console.log(this.titlerank)
-            })
   }
 }

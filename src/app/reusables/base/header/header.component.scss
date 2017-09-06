@@ -1244,15 +1244,3 @@ nav.content-header.home{
 .eq-btn-buscar{
   display: none;
 }
-
-.getmaq{
-    color:white;
-    font-size: 50px;
-    font-weight: bolder;
-    span{
-        color: $accent-color;
-    }
-    @media screen and (max-width:576px){
-        font-size: 25px;
-    }
-}

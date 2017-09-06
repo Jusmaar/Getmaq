@@ -1,4 +1,13 @@
-import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  EventEmitter,
+  Input,
+  Output,
+  Inject,
+  PLATFORM_ID
+} from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { Ranking } from '../../theme/interfaces/ranking.interface';
 import { RankingInitialize } from '../../theme/interfaces/ranking.class';
 
@@ -12,7 +21,7 @@ import { starmodelInitialize } from '../../theme/interfaces/starmodel.class';
   styleUrls: ['./ranking.component.scss']
 })
 export class RankingComponent implements OnInit {
-
+  isBrowser: boolean = isPlatformBrowser(this.platform_id);
   @Input('btnranking') btnranking;
   @Output() pasaBtnranking = new EventEmitter();
   @Output() rankTotal = new EventEmitter();
@@ -39,8 +48,11 @@ export class RankingComponent implements OnInit {
   //  animacion tada
   btntada: number = 0;
 
-  constructor(private _rankingService: RankingService,
-    private _loginService: LoginService) {
+  constructor(
+    private _rankingService: RankingService,
+    private _loginService: LoginService,
+    @Inject(PLATFORM_ID) private platform_id
+  ) {
   }
 
   ngOnInit() {
@@ -51,17 +63,17 @@ export class RankingComponent implements OnInit {
     console.log(this.numEstrellas, this.tituloEstrellas, this.descripcionEstrellas);
     let obj = {
       title: this.tituloEstrellas,
-      description:this.descripcionEstrellas,
-      rankStar:this.numEstrellas,
-      usuarioId:JSON.parse(localStorage.getItem('token')).id,
-      publicationId:this.publicationrank.id
+      description: this.descripcionEstrellas,
+      rankStar: this.numEstrellas,
+      usuarioId: JSON.parse(localStorage.getItem('token')).id,
+      publicationId: this.publicationrank.id
     }
     let sendrank = this._rankingService.SendRanking(obj)
-                  .subscribe(res=>{
-                    console.log(res)
-                    this.rankTotal.emit(res.rkStarTotal);
-                    sendrank.unsubscribe();
-                  });
+      .subscribe(res => {
+        console.log(res)
+        this.rankTotal.emit(res.rkStarTotal);
+        sendrank.unsubscribe();
+      });
   }
 
 
