@@ -1,7 +1,8 @@
 export class cuppaoauthConfig {
-  private authServerBaseUrl = 'http://34.227.201.151:8080';
+  private authServerBaseUrl = 'http://54.164.83.170:8080';
   public url = 'http://www.easymaq.com';
   /* public url = 'http://localhost:4200'; */
+  // public url= 'http://54.164.83.170:8080';
   config = {
     'loginRoute': 'login',
     'facebook': {
